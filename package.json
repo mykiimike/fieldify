@@ -1,0 +1,26 @@
+{
+  "name": "fieldify",
+  "version": "1.0.0",
+  "description": "Fieldify object manipulation & validator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mykiimike/fieldify.git"
+  },
+  "keywords": [
+    "field",
+    "validator",
+    "manipulation",
+    "object",
+    "JSON"
+  ],
+  "author": "Michael Vergoz",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mykiimike/fieldify/issues"
+  },
+  "homepage": "https://github.com/mykiimike/fieldify#readme"
+}
