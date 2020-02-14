@@ -32,6 +32,46 @@ const schema = {
 }
 ```
 
+### Nested Object and Array
+
+The last important point in Fieldify is the notion of Array and Nested object. The great ability of Fieldify is to support Nested Objects and Array. In a Fieldify schema the definition of an Array makes it possible to define the type of the field. One cannot thus define several element in an array of schema however to define one of them will allow Fieldify to authorize elements in time as source/input in the iterator.
+
+
+In a schema the **assign** or the **fusion** will only take the first element of an Array to compose the output.
+
+It's a bit complex like that but very useful every day:
+
+```js
+// a Fieldify schema
+const schema = {
+	name: {
+		// define an array field
+		first: [{
+			fieldOne: {
+				$opt: true
+			},
+			fieldTwo: {
+				$opt: true
+			}
+		}]
+	},
+}
+
+// an input
+const input = {
+	name: {
+		first: [{
+			fieldOne: 32,
+			fieldTwo: 43
+		},{
+			fieldOne: 1,
+			fieldTwo: 4
+		},]
+	},
+}
+
+```
+
 ## Installation
 
 ```
