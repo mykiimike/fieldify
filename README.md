@@ -4,6 +4,12 @@
 
 It allows you to read or transform a schema and extract or verify related data. It is very useful for handling complex objects and schemas. Especially when designing CRUD or API input validator.
 
+## Installation
+
+```
+npm install fieldify
+```
+
 ## Introduction
 
 There are a few basic points in Fieldify. In particular the management of Array arrays and the use of **$** in front of certain fields.
@@ -70,12 +76,6 @@ const input = {
 	},
 }
 
-```
-
-## Installation
-
-```
-npm install fieldify
 ```
 
 ## Assignator
