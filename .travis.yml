@@ -1,0 +1,33 @@
+language: node_js
+
+node_js:
+  - "6"
+  - "8"
+  - "10"
+
+before_install:
+  - export PATH=./node_modules/.bin/:$PATH
+  - npm install -g npm
+
+install:
+  - npm install
+
+branches:
+  only:
+    - master
+
+notifications:
+  email:
+    recipients:
+      - v.michael@pulse.digital
+    on_success: never
+    on_failure: always
+
+env:
+  - LANG="en_US.UTF-8"
+os:
+  - linux
+  - osx
+
+sudo: required
+dist: xenial
