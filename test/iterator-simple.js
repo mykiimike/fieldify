@@ -67,7 +67,7 @@ describe('Iterator Basics', function () {
                 current.result[current.key] = "OK " + current.input;
                 next();
             }),
-            
+
             onEnd: (iterator) => {
                 // compare output
                 const jsons = JSON.stringify(iterator.result);
@@ -82,7 +82,9 @@ describe('Iterator Basics', function () {
         fieldify.iterator(opts)
     });
 
-    it('should get a valid return from a array schema', function (done) {
+
+
+    it('should get a valid return from a nested array schema', function (done) {
         const schema = {
             users: [{
                 first: {},
@@ -144,7 +146,7 @@ describe('Iterator Basics', function () {
             }]
         }
 
-        const input = { }
+        const input = {}
 
         const hdl = fieldify.compile(schema)
 
@@ -153,11 +155,11 @@ describe('Iterator Basics', function () {
             input: input,
 
             onAssign: ((current, next) => {
-                counter++;                
+                counter++;
                 next();
             }),
             onEnd: (iterator) => {
-                if(counter != 5) {
+                if (counter != 5) {
                     done("Invalid Field Counter")
                 }
                 else {
@@ -168,40 +170,41 @@ describe('Iterator Basics', function () {
         fieldify.iterator(opts)
     });
 
-
-
-    /*
-    it('should get a invalid return from a simple schema because of non nested input', function (done) {
+    it('should get a valid return from a direct array schema', function (done) {
         const schema = {
-            first: {error: {}},
-            last: {}
+            users: [{
+                $option: true
+            }]
         }
 
         const input = {
-           
-            first: "Michael",
-            last: "Vergoz"
-            
+            users: [
+                'michael',
+                'vergoz'
+            ]
         }
 
         const hdl = fieldify.compile(schema)
 
-
         const opts = {
             handler: hdl,
             input: input,
-            assign: () => {},
-            options: () => {},
-            end: (err) => {
-
-                done(err);
+            onAssign: ((current, next) => {
+                current.result[current.key] = "OK " + current.input;
+                next();
+            }),
+            onEnd: (iterator) => {
+                // compare output
+                const jsons = JSON.stringify(iterator.result);
+                if (jsons != '{"users":["OK michael","OK vergoz"]}') {
+                    done("Entry is different: " + jsons);
+                }
+                else {
+                    done();
+                }
             },
         }
         fieldify.iterator(opts)
-        
     });
-*/
 
 });
-
-
