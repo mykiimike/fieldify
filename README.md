@@ -164,7 +164,7 @@ There is an example that shows how to merge 2 fields into one in examples/assign
 The iterator is a means of extracting data from an entry according to the defined Fieldify scheme. This is very useful for validating or verifying input data.
 
 
-[travis-build-img]: https://api.travis-ci.org/mykiimike/fieldify.png
+[travis-build-img]: https://travis-ci.org/mykiimike/fieldify.svg?branch=master
 [travis-build-url]: https://travis-ci.org/mykiimike/fieldify
 
 [coveralls-img]: https://coveralls.io/repos/github/mykiimike/fieldify/badge.svg?branch=master

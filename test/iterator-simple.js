@@ -127,6 +127,46 @@ describe('Iterator Basics', function () {
         fieldify.iterator(opts)
     });
 
+    it('should follow all fields of the schema with no input', function (done) {
+        var counter = 0;
+
+        const schema = {
+            simple: {},
+            nested: {
+                subNest1: {
+                    subSubNest: {}
+                },
+                subNest: {},
+            },
+            users: [{
+                first: {},
+                last: {}
+            }]
+        }
+
+        const input = { }
+
+        const hdl = fieldify.compile(schema)
+
+        const opts = {
+            handler: hdl,
+            input: input,
+
+            onAssign: ((current, next) => {
+                counter++;                
+                next();
+            }),
+            onEnd: (iterator) => {
+                if(counter != 5) {
+                    done("Invalid Field Counter")
+                }
+                else {
+                    done()
+                }
+            },
+        }
+        fieldify.iterator(opts)
+    });
 
 
 
