@@ -1,6 +1,7 @@
 # Fieldify
 
 [![][travis-build-img]][travis-build-url]
+[![][coveralls-img]][coveralls-url]
 
 **fieldify** is a schema modeler, a data extractor and a generic object iterator. It allows you to read, transform or verify a data schema.
 
@@ -165,3 +166,6 @@ The iterator is a means of extracting data from an entry according to the define
 
 [travis-build-img]: https://api.travis-ci.org/mykiimike/fieldify.png
 [travis-build-url]: https://travis-ci.org/mykiimike/fieldify
+
+[coveralls-img]: https://coveralls.io/repos/github/mykiimike/fieldify/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/mykiimike/fieldify?branch=master
