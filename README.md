@@ -1,5 +1,7 @@
 # Fieldify
 
+[![][travis-build-img]][travis-build-url]
+
 **fieldify** is a schema modeler, a data extractor and a generic object iterator. It allows you to read, transform or verify a data schema.
 
 It allows you to read or transform a schema and extract or verify related data. It is very useful for handling complex objects and schemas. Especially when designing CRUD or API input validator.
@@ -160,3 +162,6 @@ There is an example that shows how to merge 2 fields into one in examples/assign
 
 The iterator is a means of extracting data from an entry according to the defined Fieldify scheme. This is very useful for validating or verifying input data.
 
+
+[travis-build-img]: https://api.travis-ci.org/mykiimike/fieldify.png
+[travis-build-url]: https://travis-ci.org/mykiimike/fieldify
