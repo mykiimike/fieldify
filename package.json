@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha",
-    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls"
+    "coveralls": "jest --coverage --passWithNoTests && cat ./tests/coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
