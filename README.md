@@ -1,4 +1,6 @@
 # Fieldify
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmykiimike%2Ffieldify.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmykiimike%2Ffieldify?ref=badge_shield)
+
 
 [![][travis-build-img]][travis-build-url]
 [![][coveralls-img]][coveralls-url]
@@ -169,3 +171,7 @@ The iterator is a means of extracting data from an entry according to the define
 
 [coveralls-img]: https://coveralls.io/repos/github/mykiimike/fieldify/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/mykiimike/fieldify?branch=master
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmykiimike%2Ffieldify.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmykiimike%2Ffieldify?ref=badge_large)
