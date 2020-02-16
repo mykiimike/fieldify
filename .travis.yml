@@ -10,7 +10,8 @@ node_js:
 before_install:
   - export PATH=./node_modules/.bin/:$PATH
   - npm install -g npm
-
+  - npm update
+  
 install:
   - npm install
   - npm run test
