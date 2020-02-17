@@ -1,6 +1,6 @@
 {
   "name": "fieldify",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Fieldify object manipulation & validator",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,8 @@
     "url": "git+ssh://git@github.com/mykiimike/fieldify.git"
   },
   "keywords": [
+    "schema",
+    "validation",
     "field",
     "validator",
     "manipulation",
