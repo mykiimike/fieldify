@@ -162,7 +162,7 @@ There is an example that shows how to merge 2 fields into one in examples/assign
 
 ## Input Iterator
 
-Une fois que le schéma est défini et modelé il est nécessaire de le compiler afin d'optimiser le parcourt de l'arbre.
+Once the schema is defined and modeled it is necessary to compile it in order to optimize the traversing of the tree.
 
 ```js
 const fieldify = require("fieldify");
