@@ -1,6 +1,6 @@
 {
   "name": "fieldify",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Fieldify object manipulation & validator",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,8 @@
     "validator",
     "manipulation",
     "object",
-    "JSON"
+    "JSON",
+    "lodash"
   ],
   "author": "Michael Vergoz",
   "license": "GPL-3.0",

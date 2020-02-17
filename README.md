@@ -82,7 +82,7 @@ const input = {
 
 ```
 
-## Assignator
+## Schema Assignation 
 
 The assigner allows you to extract fields (those that are not prefixed with **$**) from a schema in a desired format. This is particularly useful for transforming a Fieldify schema into another schema format.
 
@@ -160,9 +160,99 @@ const extract = fieldify.assign(schema, (user, dst, object, source) => {
 
 There is an example that shows how to merge 2 fields into one in examples/assignator-rw.js.
 
-## Iterator
+## Input Iterator
+
+Une fois que le schéma est défini et modelé il est nécessaire de le compiler afin d'optimiser le parcourt de l'arbre.
+
+```js
+const fieldify = require("fieldify");
+const crypto = require("crypto");
+
+const schema = {
+    $write: false,
+
+    name: {
+        $read: false,
+        $write: true,
+
+        first: { $read: true },
+        last: { $read: true }
+    },
+    password: {
+        $write: true
+    },
+}
+const handler = fieldify.compile(schema)
+```
+
+The **handler** corresponds to the compiled instance of the schema which will be used later for the iteration.
 
 The iterator is a means of extracting data from an entry according to the defined Fieldify scheme. This is very useful for validating or verifying input data.
+
+This is how things start to get interesting, in the example below we are going to check some input data and assignment.
+
+Considering the following entry:
+
+```js
+const input = {
+    name: {
+        first: "Michael",
+        last: "Vergoz"
+    },
+    password: "My super password"
+}
+```
+
+We will create 2 assignators, one to extract the data that is readable and the other for the data that can be written. Thus the **password** field cannot be read.
+
+```js
+function isReadable(current, next) {
+    if (current.access.$read === true) {
+        current.result[current.key] = current.input;
+    }
+    next();
+}
+
+function isWritable(current, next) {
+    if (current.access.$write === true) {
+        current.result[current.key] = current.input;
+    }
+    next();
+}
+```
+
+It is important to note that the extraction functions are asynchronous and so the **next()** callback must be executed on each pass. It is thus possible to question a third party service for a field without blocking the iteration.
+
+```js
+const opts = {
+	handler: handler,
+	input: input,
+	onAssign: isReadable,
+	onEnd: (iterator) => {
+		console.log(iterator.result);
+	},
+}
+fieldify.iterator(opts)
+```
+
+In the example above, we retrieve the input data according to the Fieldify schema compiled handler with the **onAssign()** assignment function which will extract only the fields inheriting from a **$read** flag to **true**. In this example, the password field will not be rendered when the iteration has finished and executed the **onEnd()** callback
+
+This type of iteration is very useful when presenting data to the user (database > user)
+
+
+```js
+const opts = {
+	handler: handler,
+	input: input,
+	onAssign: isWritable,
+	onEnd: (iterator) => {
+		console.log(iterator.result);
+	},
+}
+fieldify.iterator(opts)
+```
+
+In the example above the password field will be returned in the result. This case arises when we want to insert the data in a database (user > database)
 
 
 [travis-build-img]: https://travis-ci.org/mykiimike/fieldify.svg?branch=master
