@@ -10,42 +10,49 @@ It allows you to read or transform a schema and extract or verify related data. 
 
 ## Installation
 
-```
+Using NPM :
+
+```sh
 npm install fieldify
+```
+
+Using Yarn :
+
+```sh
+yarn add fieldify
 ```
 
 ## Introduction
 
-There are a few basic points in Fieldify. In particular the management of Array arrays and the use of **$** in front of certain fields.
+There are a few basic points in Fieldify. In particular the management of arrays and the use of **\$** in front of certain fields.
 
-Fieldify is a recursive object iterator which allows
+Fieldify is a recursive object iterator which allows :
 
-* Read or transform a schema - **assignator**
-* Extract and verify the input data following a schema - **iterator**
+- Read or transform a schema - **assignator**
+- Extract and verify the input data following a schema - **iterator**
 
-It is essential to understand the use of **$**. When a field in a schema is preceded by **$** this means that the iterator will not enter processing in this field, this allows options to be given to the parent field and this recursively.
+It is essential to understand the use of **\$**. When a field in a schema is preceded by **\$** this means that the iterator will not enter processing in this field, this allows options to be given to the parent field and this recursively.
 
 So you can give any options you want to define the properties of a field.
 
 ```js
 const schema = {
-	name: {
-		first: {
-			$options: "string",
-			$max: 30,
-			$onCheck: (data, next) => { }
-		},
-		last: {
-			$options: "string"
-		}
-	},
-}
+  name: {
+    first: {
+      $options: "string",
+      $max: 30,
+      $onCheck: (data, next) => {}
+    },
+    last: {
+      $options: "string"
+    }
+  }
+};
 ```
 
 ### Nested Object and Array
 
 The last important point in Fieldify is the notion of Array and Nested object. The great ability of Fieldify is to support Nested Objects and Array. In a Fieldify schema the definition of an Array makes it possible to define the type of the field. One cannot thus define several element in an array of schema however to define one of them will allow Fieldify to authorize elements in time as source/input in the iterator.
-
 
 In a schema the **assign** or the **fusion** will only take the first element of an Array to compose the output.
 
@@ -54,37 +61,41 @@ It's a bit complex like that but very useful every day:
 ```js
 // a Fieldify schema
 const schema = {
-	name: {
-		// define an array field
-		first: [{
-			fieldOne: {
-				$opt: true
-			},
-			fieldTwo: {
-				$opt: true
-			}
-		}]
-	},
-}
+  name: {
+    // define an array field
+    first: [
+      {
+        fieldOne: {
+          $opt: true
+        },
+        fieldTwo: {
+          $opt: true
+        }
+      }
+    ]
+  }
+};
 
 // an input
 const input = {
-	name: {
-		first: [{
-			fieldOne: 32,
-			fieldTwo: 43
-		},{
-			fieldOne: 1,
-			fieldTwo: 4
-		},]
-	},
-}
-
+  name: {
+    first: [
+      {
+        fieldOne: 32,
+        fieldTwo: 43
+      },
+      {
+        fieldOne: 1,
+        fieldTwo: 4
+      }
+    ]
+  }
+};
 ```
 
-## Schema Assignation 
+## Schema Assignation
 
-The assigner allows you to extract fields (those that are not prefixed with **$**) from a schema in a desired format. This is particularly useful for transforming a Fieldify schema into another schema format.
+The assigner allows you to extract fields (those that are not prefixed with **\$**) from a schema in a desired format. This is particularly useful for transforming a Fieldify schema into another schema format.
 
 Example: Transforming a Fieldify schema into a Mongo (mongoose) schema
 
@@ -94,29 +105,29 @@ Below is an example of a Fieldify schema
 
 ```js
 const schema = {
-    entry: {
-        $read: false,
+  entry: {
+    $read: false,
 
-        subEntry1: {
-            $read: true,
-        },
+    subEntry1: {
+      $read: true
+    },
 
-        subEntry2: {
-            $read: true,
+    subEntry2: {
+      $read: true,
 
-            subEntry22: {
-                $read: true
-            }
-        }
+      subEntry22: {
+        $read: true
+      }
     }
-}
+  }
+};
 ```
 
-In the example below we transform an assigner into another format. Even if **$read** is **false** we continue to follow the tree.
+In the example below we transform an assigner into another format. Even if **\$read** is **false** we continue to follow the tree.
 
 ```js
 const extract = fieldify.assign(schema, (user, dst, object, source) => {
-	dst["_read"] = object.$read;
+  dst["_read"] = object.$read;
 });
 
 /* Will return
@@ -138,14 +149,14 @@ const extract = fieldify.assign(schema, (user, dst, object, source) => {
 */
 ```
 
-Extract a schema and prohibit the iterator from going further in its floor if **$read** is **false**. This is **return(false)** which indicates the iterator to return to a lower floor.
+Extract a schema and prohibit the iterator from going further in its floor if **\$read** is **false**. This is **return(false)** which indicates the iterator to return to a lower floor.
 
 ```js
 const extract = fieldify.assign(schema, (user, dst, object, source) => {
-	dst["_read"] = object.$read;
+  dst["_read"] = object.$read;
 
-	// do not follow the rest in any case
-	if(object.$read === false) return(false);
+  // do not follow the rest in any case
+  if (object.$read === false) return false;
 });
 
 /* Will return
@@ -169,20 +180,20 @@ const fieldify = require("fieldify");
 const crypto = require("crypto");
 
 const schema = {
-    $write: false,
+  $write: false,
 
-    name: {
-        $read: false,
-        $write: true,
+  name: {
+    $read: false,
+    $write: true,
 
-        first: { $read: true },
-        last: { $read: true }
-    },
-    password: {
-        $write: true
-    },
-}
-const handler = fieldify.compile(schema)
+    first: { $read: true },
+    last: { $read: true }
+  },
+  password: {
+    $write: true
+  }
+};
+const handler = fieldify.compile(schema);
 ```
 
 The **handler** corresponds to the compiled instance of the schema which will be used later for the iteration.
@@ -195,29 +206,29 @@ Considering the following entry:
 
 ```js
 const input = {
-    name: {
-        first: "Michael",
-        last: "Vergoz"
-    },
-    password: "My super password"
-}
+  name: {
+    first: "Michael",
+    last: "Vergoz"
+  },
+  password: "My super password"
+};
 ```
 
 We will create 2 assignators, one to extract the data that is readable and the other for the data that can be written. Thus the **password** field cannot be read.
 
 ```js
 function isReadable(current, next) {
-    if (current.access.$read === true) {
-        current.result[current.key] = current.input;
-    }
-    next();
+  if (current.access.$read === true) {
+    current.result[current.key] = current.input;
+  }
+  next();
 }
 
 function isWritable(current, next) {
-    if (current.access.$write === true) {
-        current.result[current.key] = current.input;
-    }
-    next();
+  if (current.access.$write === true) {
+    current.result[current.key] = current.input;
+  }
+  next();
 }
 ```
 
@@ -225,41 +236,37 @@ It is important to note that the extraction functions are asynchronous and so th
 
 ```js
 const opts = {
-	handler: handler,
-	input: input,
-	onAssign: isReadable,
-	onEnd: (iterator) => {
-		console.log(iterator.result);
-	},
-}
-fieldify.iterator(opts)
+  handler: handler,
+  input: input,
+  onAssign: isReadable,
+  onEnd: iterator => {
+    console.log(iterator.result);
+  }
+};
+fieldify.iterator(opts);
 ```
 
-In the example above, we retrieve the input data according to the Fieldify schema compiled handler with the **onAssign()** assignment function which will extract only the fields inheriting from a **$read** flag to **true**. In this example, the password field will not be rendered when the iteration has finished and executed the **onEnd()** callback
+In the example above, we retrieve the input data according to the Fieldify schema compiled handler with the **onAssign()** assignment function which will extract only the fields inheriting from a **\$read** flag to **true**. In this example, the password field will not be rendered when the iteration has finished and executed the **onEnd()** callback
 
 This type of iteration is very useful when presenting data to the user (database > user)
 
-
 ```js
 const opts = {
-	handler: handler,
-	input: input,
-	onAssign: isWritable,
-	onEnd: (iterator) => {
-		console.log(iterator.result);
-	},
-}
-fieldify.iterator(opts)
+  handler: handler,
+  input: input,
+  onAssign: isWritable,
+  onEnd: iterator => {
+    console.log(iterator.result);
+  }
+};
+fieldify.iterator(opts);
 ```
 
 In the example above the password field will be returned in the result. This case arises when we want to insert the data in a database (user > database)
 
-
 [travis-build-img]: https://travis-ci.org/mykiimike/fieldify.svg?branch=master
 [travis-build-url]: https://travis-ci.org/mykiimike/fieldify
-
 [coveralls-img]: https://coveralls.io/repos/github/mykiimike/fieldify/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/mykiimike/fieldify?branch=master
-
 [fossa-img]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmykiimike%2Ffieldify.svg?type=shield
 [fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fmykiimike%2Ffieldify?ref=badge_shield
