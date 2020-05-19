@@ -1,13 +1,17 @@
-const _utils = require("./lib/utils");
-const _fusion = require("./lib/fusion");
-const _assign = require("./lib/assign");
-const _iterator = require("./lib/iterator");
-const _compile = require("./lib/compile");
+const utils = require("./lib/utils");
+const fusion = require("./lib/fusion");
+const assign = require("./lib/assign");
+const iterator = require("./lib/iterator");
+const compile = require("./lib/compile");
+const schema = require("./lib/schema");
+const types = require("./lib/types");
 
 module.exports = {
-	fusion: _fusion,
-	assign: _assign,
-	iterator: _iterator,
-	compile: _compile,
-	utils: _utils
+	schema,
+	types,
+	fusion,
+	assign,
+	iterator,
+	compile,
+	utils
 }

@@ -107,7 +107,7 @@ describe('Iterator Basics', function () {
 
         const hdl = fieldify.compile(schema)
 
-        const opts = {
+        const opts = {      
             handler: hdl,
             input: input,
 
@@ -115,6 +115,7 @@ describe('Iterator Basics', function () {
                 current.result[current.key] = "OK " + current.input;
                 next();
             }),
+            
             onEnd: (iterator) => {
                 // compare output
                 const jsons = JSON.stringify(iterator.result);
