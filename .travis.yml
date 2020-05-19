@@ -20,6 +20,7 @@ notifications:
   email:
     recipients:
       - v.michael@pulse.digital
+      - m.vergoz@vergoz.ch
     on_success: never
     on_failure: always
 

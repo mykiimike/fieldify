@@ -1,7 +1,6 @@
 # Fieldify
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b95869f760474bfc8ac985667dd3083e)](https://app.codacy.com/manual/mv/fieldify?utm_source=github.com&utm_medium=referral&utm_content=mykiimike/fieldify&utm_campaign=Badge_Grade_Dashboard)
-
 [![][travis-build-img]][travis-build-url]
 [![][fossa-img]][fossa-url]
 
