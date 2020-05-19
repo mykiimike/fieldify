@@ -22,6 +22,7 @@ describe('Issue #1', function () {
         if (!compile.schema.first.$_access) return (done("No access..."))
         if (compile.schema.first.$_access.$_access) return (done("Issue is present"))
 
+        
         done()
     });
 
