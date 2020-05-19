@@ -21,6 +21,18 @@ Using Yarn :
 yarn add fieldify
 ```
 
+Including Fieldify
+
+Using require()
+```js
+const fieldify = require("fieldify")
+```
+
+Using import
+```js
+import fieldify from "fieldify"
+```
+
 ### Portability
 
 The package is independant from other in order to have a clean base.
@@ -52,6 +64,8 @@ Let's say we just need to validate an email and a token, and after update the to
 ```js
 
 const fieldify = require("fieldify")
+
+const { types } = fieldify;
 
 // here is the schema
 const schema = {
