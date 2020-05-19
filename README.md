@@ -1,7 +1,6 @@
 # Fieldify
 
 [![][travis-build-img]][travis-build-url]
-[![][coveralls-img]][coveralls-url]
 [![][fossa-img]][fossa-url]
 
 **fieldify** is a schema modeler, a data extractor and a generic object iterator. It allows you to read, transform or verify a data schema.
@@ -22,7 +21,110 @@ Using Yarn :
 yarn add fieldify
 ```
 
-## Introduction
+### Portability
+
+The package is independant from other in order to have a clean base.
+
+Fieldify is known to be ran well on different Javascript plateforms such as :
+
+* NodeJS 
+* In Browser (Chrome, Firefox, IE, Opera, ...)
+* Electron
+* ReactJS
+* React Native
+
+## Fieldify Schema
+
+
+Fieldify embeds a schema and types mechanism allowing to manipulate input and output data based on a schema.
+
+![Design of the Schema](data/design-schema.png)
+
+
+### Schema Declaration
+
+It is super simple to create a single schema using Fieldfy, the design is inspired from MongoDB but Fieldify works differently.
+
+First you need to know that the \$ sign before keys names are used to define special operation on the schema.
+
+Let's say we just need to validate an email and a token, and after update the token can not be readed from the database.
+
+```js
+
+const fieldify = require("fieldify")
+
+// here is the schema
+const schema = {
+    email: {
+        $type: types.Email,
+        $write: true,
+        $read: true,
+    },
+    token: {
+        $type: types.String,
+        $write: true,
+        $read: false,
+    },
+}
+
+// here we create the schema context
+const hdl = new fieldify.schema("test")
+
+// here we compile the final schema
+// you can update whenever you want using hdl.compile()
+// or hdl.fusion() and hdl.compile()
+hdl.compile(schema)
+
+// define a user input
+const input = {
+    email: "test@test.com",
+    token: "supertoken"
+}
+
+// run the verifier against the input
+hdl.verify(input, (fieldified) => {
+    if(fieldified.error === false) {
+      console.log("Error in the schema")
+    }
+})
+
+// after verification you can store in 
+// database after encoding
+hdl.encode(input, (fieldified) => {
+  console.log(fieldified.result)
+})
+
+// and getting data from the database 
+hdl.decode(input, (fieldified) => {
+  console.log(fieldified.result)
+})
+
+// and finally filter what is going out from the db
+hdl.filter(input, (fieldified) => {
+  console.log(fieldified.result)
+})
+```
+
+### Schema Types
+
+Each type has it own space in a schema, few methods are exposed to perform different operations on the field. Every type are derived from fieldifyType.
+
+Actually Fieldify Types provides different access method :
+* **verify(input, cb)**: Verify / Validate / Sanatize user input 
+* **filter(input, cb)**: Filtering Data Output generally from a database (prevent leak)
+* **encode(input, cb)**: Before to write into the database - this is how to write
+* **decode(input, cb)**: After data getting out from the database - this is how to read
+
+Each type in a schema as it owns configuration. Fieldify supports 4 mains options on the field:
+
+* **$required**: Is the field is required ? true = yes, default true
+* **$read**: Is it allowed to read the field using filter(), true = yes, default false
+* **$write**: Is it allowed to write the field using verify(), true = yes, default false
+* **$type**: The field type declaration
+
+#### Types
+
+## Internal Design
 
 There are a few basic points in Fieldify. In particular the management of arrays and the use of **\$** in front of certain fields.
 
@@ -266,7 +368,5 @@ In the example above the password field will be returned in the result. This cas
 
 [travis-build-img]: https://travis-ci.org/mykiimike/fieldify.svg?branch=master
 [travis-build-url]: https://travis-ci.org/mykiimike/fieldify
-[coveralls-img]: https://coveralls.io/repos/github/mykiimike/fieldify/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/mykiimike/fieldify?branch=master
 [fossa-img]: https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmykiimike%2Ffieldify.svg?type=shield
 [fossa-url]: https://app.fossa.io/projects/git%2Bgithub.com%2Fmykiimike%2Ffieldify?ref=badge_shield
