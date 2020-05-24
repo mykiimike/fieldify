@@ -43,6 +43,11 @@ const CounterType = {
     class: _CounterType
 }
 
+const policy = {
+    read: false,
+    write: false
+}
+
 describe('Testing schema.verify()', function () {
 
     it('testing a very basic schema using String type', function (done) {
@@ -56,7 +61,7 @@ describe('Testing schema.verify()', function () {
             firstname: "Michael",
             last: "Vergoz"
         }
-        const hdl = new schema("user")
+        const hdl = new schema("user", {policy})
         hdl.compile(sc)
         hdl.verify(input, (fieldified) => {
             done()
@@ -72,7 +77,7 @@ describe('Testing schema.verify()', function () {
             }
         }
         const input = {}
-        const hdl = new schema("test")
+        const hdl = new schema("test", {policy})
         hdl.compile(sc)
         hdl.verify(input, (fieldified) => {
             if (fieldified.error !== false) return (done("Verification got error"))
@@ -89,7 +94,7 @@ describe('Testing schema.verify()', function () {
             }
         }
         const input = {}
-        const hdl = new schema("test")
+        const hdl = new schema("test", {policy})
         hdl.compile(sc)
         hdl.verify(input, (fieldified) => {
             if (fieldified.error !== true) return (done("Should have fieldified.error === true"))
@@ -105,7 +110,7 @@ describe('Testing schema.verify()', function () {
             }
         }
         const input = { test: "Yop" }
-        const hdl = new schema("test")
+        const hdl = new schema("test", {policy})
         hdl.compile(sc)
         hdl.verify(input, (fieldified) => {
             if (fieldified.result.test !== "Yop") return (done('Should have fieldified.result.test === "Yop"'))
@@ -120,7 +125,7 @@ describe('Testing schema.verify()', function () {
             }
         }
         const input = { test: "Yop" }
-        const hdl = new schema("test")
+        const hdl = new schema("test", {policy})
         hdl.compile(sc)
         hdl.verify(input, (fieldified) => {
             if (fieldified.result.test === "Yop") return (done('Should have fieldified.result.test !== "Yop"'))
@@ -137,7 +142,7 @@ describe('Testing schema.verify()', function () {
             }]
         }
         const input = { test: ["b0", "How", "are", "you"] }
-        const hdl = new schema("test")
+        const hdl = new schema("test", {policy})
         hdl.compile(sc)
         hdl.verify(input, (fieldified) => {
             const type = hdl.handler.schema.test[0].$_type;
