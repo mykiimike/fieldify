@@ -18,6 +18,7 @@
     "rules": {
         "new-cap": 0,
         "no-redeclare": 0,
-        "brace-style": 0
+        "brace-style": 0,
+        "no-prototype-builtins": 0
     }
 }
