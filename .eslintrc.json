@@ -21,6 +21,7 @@
     "no-redeclare": 0,
     "brace-style": 0,
     "no-prototype-builtins": 0,
-    "standard/no-callback-literal": 0
+    "standard/no-callback-literal": 0,
+    "no-use-before-define": 0
   }
 }
