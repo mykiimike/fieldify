@@ -1,25 +1,26 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true
-    },
-    "extends": [
-        "standard"
-    ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
-    },
-    "parserOptions": {
-        "ecmaVersion": 11
-    },
-    "rules": {
-        "new-cap": 0,
-        "no-undef": 0,
-        "no-redeclare": 0,
-        "brace-style": 0,
-        "no-prototype-builtins": 0
-    }
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "standard"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 11
+  },
+  "rules": {
+    "new-cap": 0,
+    "no-undef": 0,
+    "no-redeclare": 0,
+    "brace-style": 0,
+    "no-prototype-builtins": 0,
+    "standard/no-callback-literal": 0
+  }
 }
