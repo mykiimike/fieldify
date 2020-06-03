@@ -6,6 +6,7 @@ const compile = require('./lib/compile')
 const schema = require('./lib/schema')
 const input = require('./lib/input')
 const types = require('./lib/types')
+const fieldifyType = require('./lib/types/type')
 
 module.exports = {
   schema,
@@ -15,5 +16,8 @@ module.exports = {
   assign,
   iterator,
   compile,
-  utils
+  utils,
+
+  // this is a shortcut to retrieve the root object for types
+  fieldifyType
 }
