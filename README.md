@@ -5,9 +5,7 @@
 [![][travis-build-img]][travis-build-url]
 [![][fossa-img]][fossa-url]
 
-_fieldify_  \* is a schema modeler, a data extractor and a generic object iterator. It allows you to read, transform or verify a data schema.
-
-It allows you to read or transform a schema and extract or verify related data. It is very useful for handling complex objects and schemas. Especially when designing CRUD or API input validator.
+**Fieldify**  is a multi-purpose schema manipulation library, data extractor, generic object and schema iterator. It allows to read, transform or verify a data schema. It is very useful for handling complex objects and schemas. Especially when designing CRUD or API input validator.
 
 ## Installation
 
@@ -59,7 +57,7 @@ Fieldify embeds a schema and types mechanism allowing to manipulate input and ou
 
 It is super simple to create a single schema using Fieldfy, the design is inspired from MongoDB but Fieldify works differently.
 
-First you need to know that the \\$ sign before keys names are used to define special operation on the schema.
+First you need to know that the \$ sign before keys names are used to define special operation on the schema.
 
 Let's say we just need to validate an email and a token, and after update the token can not be readed from the database.
 
@@ -72,12 +70,12 @@ const { types } = fieldify;
 // here is the schema
 const schema = {
     email: {
-        $type: types.Email,
+        $type: "Email",
         $write: true,
         $read: true,
     },
     token: {
-        $type: types.String,
+        $type: "String",
         $write: true,
         $read: false,
     },
@@ -121,12 +119,40 @@ hdl.filter(input, (fieldified) => {
 })
 ```
 
+
+### F2020.1 Official Types
+
+| Type | Description | Class
+|-|-|-
+| String | Single string | Low
+| Number | Number Type | Low
+| Select | Item selector | Low
+| Name | Name type | Low
+| Checkbox | Single checkbox | Low
+| DatePicker | Date picking functionnality | Low
+| Color | HTML Color selector | Low
+| FieldName | Internal Field Name | Low
+| KV | Single KV | Low
+| URL | Valid URL | Low
+| Email | E-mail address | Low
+| Country | List of Countries | Low
+| Hash | HASH type field | Low
+| Slug | Slug string | Low
+
+### Upcomming Official Types
+
+| Type | Description | Class
+|-|-|-
+| Switch | Switch button | Low
+| Rate | Rate selector | Low
+| Address | IRL Address | Low
+| LocationGPS | GPS Position | Low
+
 ### Schema Types
 
 Each type has it own space in a schema, few methods are exposed to perform different operations on the field. Every type are derived from fieldifyType.
 
 Actually Fieldify Types provides different access method :
-
 -   _verify(input, cb)_: Verify / Validate / Sanatize user input 
 -   _filter(input, cb)_: Filtering Data Output generally from a database (prevent leak)
 -   _encode(input, cb)_: Before to write into the database - this is how to write
@@ -214,7 +240,7 @@ const input = {
 
 ## Schema Assignation
 
-The assigner allows you to extract fields (those that are not prefixed with _\\$_) from a schema in a desired format. This is particularly useful for transforming a Fieldify schema into another schema format.
+The assigner allows you to extract fields (those that are not prefixed with _\$_) from a schema in a desired format. This is particularly useful for transforming a Fieldify schema into another schema format.
 
 Example: Transforming a Fieldify schema into a Mongo (mongoose) schema
 
@@ -242,7 +268,7 @@ const schema = {
 };
 ```
 
-In the example below we transform an assigner into another format. Even if _\\$read_  _ is _false\*  \* we continue to follow the tree.
+In the example below we transform an assigner into another format. Even if _\$read_  _ is _false\*  \* we continue to follow the tree.
 
 ```js
 const extract = fieldify.assign(schema, (user, dst, object, source) => {
@@ -268,7 +294,7 @@ const extract = fieldify.assign(schema, (user, dst, object, source) => {
 */
 ```
 
-Extract a schema and prohibit the iterator from going further in its floor if _\\$read_  _ is _false_. This is _return(false)\*  \* which indicates the iterator to return to a lower floor.
+Extract a schema and prohibit the iterator from going further in its floor if _\$read_  _ is _false_. This is _return(false)\*  \* which indicates the iterator to return to a lower floor.
 
 ```js
 const extract = fieldify.assign(schema, (user, dst, object, source) => {
@@ -365,7 +391,7 @@ const opts = {
 fieldify.iterator(opts);
 ```
 
-In the example above, we retrieve the input data according to the Fieldify schema compiled handler with the _onAssign()_  _ assignment function which will extract only the fields inheriting from a _\\$read\*  _ flag to _true_. In this example, the password field will not be rendered when the iteration has finished and executed the _onEnd()\*  \* callback
+In the example above, we retrieve the input data according to the Fieldify schema compiled handler with the _onAssign()_  _ assignment function which will extract only the fields inheriting from a _\$read\*  _ flag to _true_. In this example, the password field will not be rendered when the iteration has finished and executed the _onEnd()\*  \* callback
 
 This type of iteration is very useful when presenting data to the user (database > user)
 
