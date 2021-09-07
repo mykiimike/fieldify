@@ -5,7 +5,11 @@
 [![][travis-build-img]][travis-build-url]
 [![][fossa-img]][fossa-url]
 
-**Fieldify**  is a multi-purpose schema manipulation library, data extractor, generic object and schema iterator. It allows to read, transform or verify a data schema. It is very useful for handling complex objects and schemas. Especially when designing CRUD or API input validator.
+**Fieldify**  is a multi-purpose schema manipulation library, data extractor, generic object and schema iterator. It allows to read, transform or verify a data schema. It is very useful for handling complex objects and schemas. Especially when designing CRUD or API input validator. But also define protocols or file format, the field of Fieldify is very wide. 
+
+## Documentations
+
+- [Fieldify Type Manager](./lib/types/README.md)
 
 ## Installation
 
@@ -118,7 +122,6 @@ hdl.filter(input, (fieldified) => {
   console.log(fieldified.result)
 })
 ```
-
 
 ### F2020.1 Official Types
 
@@ -304,8 +307,7 @@ const extract = fieldify.assign(schema, (user, dst, object, source) => {
   if (object.$read === false) return false;
 });
 
-/  * Will return
-
+/* Will return
 {
 	"entry": {
 		"_read": false
@@ -359,7 +361,7 @@ const input = {
 };
 ```
 
-We will create 2 assignators, one to extract the data that is readable and the other for the data that can be written. Thus the _password_  \* field cannot be read.
+We will create 2 assignators, one to extract the data that is readable and the other for the data that can be written. Thus the *password* field cannot be read.
 
 ```js
 function isReadable(current, next) {
@@ -377,7 +379,7 @@ function isWritable(current, next) {
 }
 ```
 
-It is important to note that the extraction functions are asynchronous and so the _next()_  \* callback must be executed on each pass. It is thus possible to question a third party service for a field without blocking the iteration.
+It is important to note that the extraction functions are asynchronous and so the *next()* callback must be executed on each pass. It is thus possible to question a third party service for a field without blocking the iteration.
 
 ```js
 const opts = {
@@ -391,7 +393,7 @@ const opts = {
 fieldify.iterator(opts);
 ```
 
-In the example above, we retrieve the input data according to the Fieldify schema compiled handler with the _onAssign()_  _ assignment function which will extract only the fields inheriting from a _\$read\*  _ flag to _true_. In this example, the password field will not be rendered when the iteration has finished and executed the _onEnd()\*  \* callback
+In the example above, we retrieve the input data according to the Fieldify schema compiled handler with the *onAssign()* assignment function which will extract only the fields inheriting from a *$read* flag to _true_. In this example, the password field will not be rendered when the iteration has finished and executed the *onEnd()* callback
 
 This type of iteration is very useful when presenting data to the user (database > user)
 
