@@ -102,9 +102,15 @@ const input = {
 // run the verifier against the input
 hdl.verify(input, (fieldified) => {
     if(fieldified.error === false) {
-      console.log("Error in the schema")
+      console.log("Error in the input")
     }
 })
+
+// verify promise version call
+const fieldified = await hdl.verify(input)
+if(fieldified.error === false) {
+  console.log("Error in the input")
+}
 
 // after verification you can store in 
 // database after encoding
@@ -121,6 +127,10 @@ hdl.decode(input, (fieldified) => {
 hdl.filter(input, (fieldified) => {
   console.log(fieldified.result)
 })
+
+// filter promise version
+const fieldified = await hdl.filter(input)
+console.log(fieldified.result)
 ```
 
 ### F2020.1 Official Types

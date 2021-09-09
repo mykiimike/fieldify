@@ -22,6 +22,9 @@
     "brace-style": 0,
     "no-prototype-builtins": 0,
     "standard/no-callback-literal": 0,
-    "no-use-before-define": 0
+    "no-use-before-define": 0,
+    "no-control-regex": 0,
+    "space-before-function-paren": 0,
+    "no-var": 0
   }
 }
