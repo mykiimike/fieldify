@@ -143,14 +143,20 @@ console.log(fieldified.result)
 | Name | Name type | Low
 | Checkbox | Single checkbox | Low
 | DatePicker | Date picking functionnality | Low
+| DatePickerRange | Date picking with range | Low
+| DateTimePicker | Date & Time picker | Low
 | Color | HTML Color selector | Low
 | FieldName | Internal Field Name | Low
+| Hash | Hash | Low
 | KV | Single KV | Low
 | URL | Valid URL | Low
 | Email | E-mail address | Low
+| Radio | Radio button | Low
 | Country | List of Countries | Low
 | Hash | HASH type field | Low
 | Slug | Slug string | Low
+| TimePicker | Time picking functionnality | Low
+| TimePickerRange | Time picking with range | Low
 
 ### Upcomming Official Types
 
