@@ -9,9 +9,9 @@ describe('types::Number', function () {
   describe('positive default behavior', async function () {
     const validValues = [
       125,
-      "125",
+      '125',
       125.2,
-      "125.2"
+      '125.2'
     ]
     const sc = {
       test: {
@@ -27,9 +27,9 @@ describe('types::Number', function () {
   describe('negative only integer', async function () {
     const validValues = [
       125.2,
-      "125.2",
-      "1a",
-      "q"
+      '125.2',
+      '1a',
+      'q'
     ]
     const sc = {
       test: {
@@ -48,9 +48,9 @@ describe('types::Number', function () {
   describe('negative only float', async function () {
     const validValues = [
       125,
-      "125",
-      "1a",
-      "q"
+      '125',
+      '1a',
+      'q'
     ]
     const sc = {
       test: {
@@ -65,7 +65,6 @@ describe('types::Number', function () {
 
     await lib.negative(hdl, validValues)
   })
-
 
   describe('negative default behavior', async function () {
     const validValues = [
@@ -83,4 +82,3 @@ describe('types::Number', function () {
     await lib.negative(hdl, validValues)
   })
 })
-
