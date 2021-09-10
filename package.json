@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/mykiimike/fieldify.git"
+    "url": "git@github.com:Fieldify/core-js.git"
   },
   "keywords": [
     "schema",
@@ -23,9 +23,9 @@
   "author": "Michael Vergoz",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/mykiimike/fieldify/issues"
+    "url": "https://github.com/Fieldify/core-js/issues"
   },
-  "homepage": "https://github.com/mykiimike/fieldify#readme",
+  "homepage": "https://github.com/Fieldify/core-js#readme",
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
