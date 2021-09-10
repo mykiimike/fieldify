@@ -1,9 +1,8 @@
 # Fieldify Type Manager
 
-Description du fonctionnement interne de Fieldify sur les différents types en vue de développer de nouveaux type Fieldify. Les types composent les schémas.
+Description of the internal operation of Fieldify on the different types in order to develop new Fieldify types. The types compose the schemas.
 
 ## Structure
-
 
 Fieldify includes an internal object allowing the type in different state. This [file is here](./type.js) and is a simple javascript object that must be inherited by each type during its development. 
 
