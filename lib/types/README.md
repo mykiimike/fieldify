@@ -63,14 +63,12 @@ class exampleType extends type {
   }
 
   verify (input, cb) {
-    if(input !== 1) return(cb(true, "Awaiting one"))
-    if (cb) cb(false)
-    return (false)
+    if (cb) cb(null)
+    return (null)
   }
 
   filter (input, cb) {
-    if (cb) cb(true)
-    return (true)
+    return (this.verify(input, cb))
   }
 
   schematizer () {
