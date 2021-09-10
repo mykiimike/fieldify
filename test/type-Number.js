@@ -81,4 +81,43 @@ describe('types::Number', function () {
 
     await lib.negative(hdl, validValues)
   })
+
+
+  describe('negative min option', async function () {
+    const validValues = [
+      125,
+      '125'
+    ]
+    const sc = {
+      test: {
+        $type: types.Number,
+        $options: {
+          min: 130
+        }
+      }
+    }
+    const hdl = new schema('user')
+    hdl.compile(sc)
+
+    await lib.negative(hdl, validValues)
+  })
+
+  describe('negative max option', async function () {
+    const validValues = [
+      125,
+      '125'
+    ]
+    const sc = {
+      test: {
+        $type: types.Number,
+        $options: {
+          max: 120
+        }
+      }
+    }
+    const hdl = new schema('user')
+    hdl.compile(sc)
+
+    await lib.negative(hdl, validValues)
+  })
 })

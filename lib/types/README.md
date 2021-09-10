@@ -33,7 +33,7 @@ Interesting to look at the [Email](./Email.js) type.
 
 ### filter(input, cb)
 
-This method will filter the input data **input**. If the field is not valid then cb(error=TRUE) is executed. At this point the engine will simply remove the data and return at the end only the valid fields by eliminating the invalid ones. Interesting to look at the [Email](./Email.js) type.
+This method will filter the input data *input*. If the field is not valid then cb(error=TRUE) is executed. At this point the engine will simply remove the data and return at the end only the valid fields by eliminating the invalid ones. Interesting to look at the [Email](./Email.js) type.
 
 ### encode(input)
 
