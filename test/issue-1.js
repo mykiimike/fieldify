@@ -17,8 +17,8 @@ describe('Issue #1', function () {
     // second pass
     fieldify.compile(schema)
 
-    if (!compile.schema.first.$_access) return (done('No access...'))
-    if (compile.schema.first.$_access.$_access) return (done('Issue is present'))
+    if (!compile.schema.first.$_access) return (done('No access... https://github.com/mykiimike/fieldify/issues/1'))
+    if (compile.schema.first.$_access.$_access) return (done('Issue is present https://github.com/mykiimike/fieldify/issues/1'))
 
     done()
   })

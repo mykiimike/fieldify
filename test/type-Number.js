@@ -4,8 +4,6 @@ const lib = require('./lib')
 const { schema, types } = fieldify
 
 describe('types::Number', function () {
-  // TODO: test min & max
-
   describe('positive default behavior', async function () {
     const validValues = [
       125,
@@ -81,7 +79,6 @@ describe('types::Number', function () {
 
     await lib.negative(hdl, validValues)
   })
-
 
   describe('negative min option', async function () {
     const validValues = [

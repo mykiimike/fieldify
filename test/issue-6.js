@@ -17,7 +17,7 @@ describe('Issue #6', function () {
     // second pass
     fieldify.compile(schema)
 
-    if ('$_nested' in compile.schema.array[0]) return (done('Issue is present'))
+    if ('$_nested' in compile.schema.array[0]) return (done('Issue https://github.com/mykiimike/fieldify/issues/6 is present'))
     done()
   })
 })
