@@ -133,6 +133,63 @@ const fieldified = await hdl.filter(input)
 console.log(fieldified.result)
 ```
 
+### Roles based Schema Declaration
+
+Schema based on roles allows to define roles for some fields of the schema. This allows to limit the reading or writing of fields according to a role. Typically an administrator will be able to field a field when a user will not be able to do so. 
+
+Fieldify provides a role management method associated to the field directly. Depending on these roles, Fieldify will create different schemes per existing role. This makes data verification or filtering much easier. 
+
+Moreover, Fieldify allows to rewrite all 'leaf' fields starting with $. It is possible to change the values for $read or $write but also $encode or $decode. Here is how to declare a schema based on roles:
+
+```js
+
+const fieldify = require("fieldify")
+
+const { roles } = fieldify
+
+const theSchema = {
+  test: {
+    $type: 'String',
+    // this is default role schema where the field can not write or read.
+    $write: false,
+    $read: false,
+    $roles: {
+      admin: {
+        // admin can read & write
+        $read: true,
+        $write: true
+      },
+      user: {
+        // user can just read, not write
+        $read: true
+      }
+    }
+  }
+}
+
+const hdl = new roles('test', theSchema)
+
+// here we have 3 instances of schema
+
+// verify on default role
+const fieldified = await hdl.default.verify(input)
+if(fieldified.error === false) {
+  console.log("Error in the input")
+}
+
+// verify on admin role
+const fieldified = await hdl.admin.verify(input)
+if(fieldified.error === false) {
+  console.log("Error in the input")
+}
+
+// verify on user role
+const fieldified = await hdl.user.verify(input)
+if(fieldified.error === false) {
+  console.log("Error in the input")
+}
+````
+
 ### F2020.1 Official Types
 
 | Type | Description | Class
