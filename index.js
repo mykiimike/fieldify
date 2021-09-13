@@ -5,12 +5,14 @@ const iterator = require('./lib/iterator')
 const compile = require('./lib/compile')
 const schema = require('./lib/schema')
 const input = require('./lib/input')
+const roles = require('./lib/roles')
 const types = require('./lib/types')
 const fieldifyType = require('./lib/types/type')
 const pack = require('./package.json')
 
 module.exports = {
   schema,
+  roles,
   input,
   types,
   fusion,
