@@ -110,45 +110,45 @@ describe('Iterator Access Control Tests', function () {
   describe('Access compilation', function () {
     it('should compile schema with right access', function () {
       compile = fieldify.compile(schema)
-      assert.equal(typeof compile.schema, 'object')
+      assert.strictEqual(typeof compile.schema, 'object')
     })
 
     it('$test must be present in name.first', function () {
-      assert.equal(compile.schema.name.first.$_access.$test, 'ok')
+      assert.strictEqual(compile.schema.name.first.$_access.$test, 'ok')
     })
 
     it('$test must be present in name.last', function () {
-      assert.equal(compile.schema.name.last.$_access.$test, 'ok')
+      assert.strictEqual(compile.schema.name.last.$_access.$test, 'ok')
     })
 
     it('$test must be present in password', function () {
-      assert.equal(compile.schema.password.$_access.$test, 'ok')
+      assert.strictEqual(compile.schema.password.$_access.$test, 'ok')
     })
 
     it('password must NOT be readable', function () {
-      assert.notEqual(compile.schema.password.$_access.$read, true)
+      assert.notStrictEqual(compile.schema.password.$_access.$read, true)
     })
 
     it('name.first must be writable', function () {
-      assert.equal(compile.schema.name.first.$_access.$write, true)
+      assert.strictEqual(compile.schema.name.first.$_access.$write, true)
     })
 
     // direct array
     it('notes direct array assignment must be writable', function () {
-      assert.equal(compile.schema.notes[0].$_access.$write, true)
+      assert.strictEqual(compile.schema.notes[0].$_access.$write, true)
     })
 
     it('notes spec must be set to good', function () {
-      assert.equal(compile.schema.notes[0].$_access.$spec, 'good')
+      assert.strictEqual(compile.schema.notes[0].$_access.$spec, 'good')
     })
 
     // indirect array
     it('comment.who indirect array assignment must be writable', function () {
-      assert.equal(compile.schema.comments[0].who.$_access.$write, true)
+      assert.strictEqual(compile.schema.comments[0].who.$_access.$write, true)
     })
 
     it('comment.who indirect array assignment must be readable', function () {
-      assert.equal(compile.schema.comments[0].who.$_access.$read, true)
+      assert.strictEqual(compile.schema.comments[0].who.$_access.$read, true)
     })
   })
 
