@@ -8,8 +8,8 @@ The Fieldify Type Manager provides a set of functionalities for managing types i
 - [`schematizer()`](#schematizer)
 - [`sanitize(controller)`](#async-sanitizecontroller)
 - [`async verify(data)`](#async-verifydata)
-- [`async stringify(data)`](#async-stringifydata)
-- [`async parse(data)`](#async-parsedata)
+- [`async encode(data)`](#async-encodedata)
+- [`async decode(data)`](#async-decodedata)
 - [Structure of "data"](#structure-of-data)
 - [`configuration`](#configuration)
 - [Implementing a Type](#implementing-a-type)
@@ -35,19 +35,19 @@ The `verify()` method checks the input data of the type. It is executed asynchro
 
 Referencing the [Email](./Email.js) type would provide further insights.
 
-### `async stringify(data)`
+### `async encode(data)`
 
-The `stringify()` method stringifies the data before its use. For example, an email address should be stored in lowercase. This method allows adding transformation steps before storage, such as storing a hash in base64.
+The `encode()` method stringifies the data before its use. For example, an email address should be stored in lowercase. This method allows adding transformation steps before storage, such as storing a hash in base64.
 
 Referencing the [Email](./Email.js) type would provide further insights.
 
-### `async parse(data)`
+### `async decode(data)`
 
-The `parse()` method allows restoring the data that was previously stringified using `stringify()`. It is typically used for decoding base64 strings.
+The `decode()` method allows restoring the data that was previously stringified using `encode()`. It is typically used for decoding base64 strings.
 
 ### Structure of "data"
 
-The "data" structure is used in the `verify()`, `stringify()`, and `parse()` methods. The following explanation provides a detailed breakdown of the different fields:
+The "data" structure is used in the `verify()`, `encode()`, and `decode()` methods. The following explanation provides a detailed breakdown of the different fields:
 
 ```json
 {
@@ -154,8 +154,8 @@ const ftExampleConfig = {
 };
 
 const ftExample = {
-    stringify: ftExampleStringify,
-    parse: ftExampleVerify,
+    encode: ftExampleStringify,
+    decode: ftExampleVerify,
     verify: ftExampleVerify,
     sanitize: ftExampleSanitize,
     schematizer: ftExampleSchematizer,
