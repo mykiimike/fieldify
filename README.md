@@ -7,6 +7,8 @@
 
 **Fieldify**  is a multi-purpose schema manipulation library, data extractor, generic object and schema iterator. It allows to read, transform or verify a data schema. It is very useful for handling complex objects and schemas. Especially when designing CRUD or API input validator. But also define protocols or file format, the field of Fieldify is very wide. 
 
+**Warning**: On the current Git repository, you are on the "master" branch, which corresponds to the future version 2 of Fieldify. If you want to access the production code, please go to the "V1" branch.
+
 ## Documentations
 
 - [Fieldify Type Manager](./lib/types/README.md)
