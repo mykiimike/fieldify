@@ -10,22 +10,22 @@ const UrlTests = require("./types/URL")
 const countryTests = require("./types/country")
 
 const bulks = [
-    // {
-    //     ref: "STRING-B01",
-    //     tests: stringTests
-    // },
-    // {
-    //     ref: "NUMBER-B01",
-    //     tests: numberTests
-    // },
-    // {
-    //     ref: "MOMENT-B01",
-    //     tests: momentTests
-    // },
-    // {
-    //     ref: "URL-B01",
-    //     tests: UrlTests
-    // },
+    {
+        ref: "STRING",
+        tests: stringTests
+    },
+    {
+        ref: "NUMBER",
+        tests: numberTests
+    },
+    {
+        ref: "MOMENT",
+        tests: momentTests
+    },
+    {
+        ref: "URL",
+        tests: UrlTests
+    },
     {
         ref: "COUNTRY",
         tests: countryTests
@@ -118,21 +118,22 @@ describe('Asynchronous types testing', function () {
                         it(`Testing ${strategy}() against ${testRef}: ${test.description}`, async () => {
                             const schema = new fieldify.schema(context)
                             const cerror = schema.compile(test.schema)
-
+        
                             if (cerror.errors.length > 0 && test.compileError !== true)
                                 throw Error(cerror.errors[0].message)
                             else if (cerror.errors.length > 0 && test.compileError === true)
                                 return
-
+                    
                             const ret = await schema[strategy](test.data)
-
+              
                             // realign pointer if neeeded
-                            if(bulkTest.pointer) {
+                            if(bulkTest.pointer && ret.error !== true) {
                                 ret.fields = bulkTest.pointer(ret)
                             }
                             else {
                                 ret.fields = ret.result
                             }
+
                             // prepare call
                             const errorKey = strategy + 'Error'
                             const errorCode = errorKey in test ? test[errorKey] : test.error
