@@ -1,6 +1,3 @@
-const testTime = 'Sat Jun 03 2023 23:16:42 GMT+0200 (Central European Summer Time)'
-const testTimeDate = new Date(testTime)
-
 async function waitObject(test, ret) {
     if (!("test" in ret.fields))
         throw Error("Can not find field test")

@@ -7,6 +7,7 @@ const stringTests = require("./types/string")
 const numberTests = require("./types/number")
 const momentTests = require("./types/moment")
 const UrlTests = require("./types/URL")
+const countryTests = require("./types/country")
 
 const bulks = [
     // {
@@ -21,9 +22,13 @@ const bulks = [
     //     ref: "MOMENT-B01",
     //     tests: momentTests
     // },
+    // {
+    //     ref: "URL-B01",
+    //     tests: UrlTests
+    // },
     {
-        ref: "URL-B01",
-        tests: UrlTests
+        ref: "COUNTRY",
+        tests: countryTests
     },
 ]
 
