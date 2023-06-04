@@ -5,15 +5,25 @@ const fieldify = require("..")
 
 const stringTests = require("./types/string")
 const numberTests = require("./types/number")
+const momentTests = require("./types/moment")
+const UrlTests = require("./types/URL")
 
 const bulks = [
+    // {
+    //     ref: "STRING-B01",
+    //     tests: stringTests
+    // },
+    // {
+    //     ref: "NUMBER-B01",
+    //     tests: numberTests
+    // },
+    // {
+    //     ref: "MOMENT-B01",
+    //     tests: momentTests
+    // },
     {
-        ref: "STRING-B01",
-        tests: stringTests
-    },
-    {
-        ref: "NUMBER-B01",
-        tests: numberTests
+        ref: "URL-B01",
+        tests: UrlTests
     },
 ]
 
@@ -81,8 +91,12 @@ for (let bulk of bulks) {
 
 const bulkTests = [
     { ref: "STD", type: "Standard", bulks },
-    { ref: "NEST", type: "Nested", bulks: nestedBulks },
-    { ref: "ARR", type: "Array", bulks: nestedBulks },
+    { ref: "NEST", type: "Nested", bulks: nestedBulks, pointer: (ret)=>{
+        return(ret.result.insideNested)
+    }},
+    { ref: "ARR", type: "Array", bulks: arrayBulks, pointer: (ret)=>{
+        return(ret.result.insideArray[0])
+    }},
 ]
 
 describe('Asynchronous types testing', function () {
@@ -107,8 +121,19 @@ describe('Asynchronous types testing', function () {
 
                             const ret = await schema[strategy](test.data)
 
+                            // realign pointer if neeeded
+                            if(bulkTest.pointer) {
+                                ret.fields = bulkTest.pointer(ret)
+                            }
+                            else {
+                                ret.fields = ret.result
+                            }
+                            // prepare call
                             const errorKey = strategy + 'Error'
                             const errorCode = errorKey in test ? test[errorKey] : test.error
+
+                            const callbackKey = strategy + 'Callback'
+                            const callback = test[callbackKey]
 
                             if (ret.error === true && errorCode !== true)
                                 throw Error(Object.values(ret.fields)[0])
@@ -116,6 +141,8 @@ describe('Asynchronous types testing', function () {
                                 throw Error("Test should failed")
                             else if (ret.error === true && errorCode === true)
                                 return
+                            else if (callback)
+                                await callback(test, ret)
                             else if (strategy in test)
                                 assert.deepEqual(ret.result, test[strategy]);
 
