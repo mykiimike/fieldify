@@ -8,6 +8,7 @@ const numberTests = require("./types/number")
 const momentTests = require("./types/moment")
 const UrlTests = require("./types/URL")
 const countryTests = require("./types/country")
+const emailTests = require("./types/email")
 
 const bulks = [
     {
@@ -29,6 +30,10 @@ const bulks = [
     {
         ref: "COUNTRY",
         tests: countryTests
+    },
+    {
+        ref: "EMAIL",
+        tests: emailTests
     },
 ]
 
@@ -96,12 +101,16 @@ for (let bulk of bulks) {
 
 const bulkTests = [
     { ref: "STD", type: "Standard", bulks },
-    { ref: "NEST", type: "Nested", bulks: nestedBulks, pointer: (ret)=>{
-        return(ret.result.insideNested)
-    }},
-    { ref: "ARR", type: "Array", bulks: arrayBulks, pointer: (ret)=>{
-        return(ret.result.insideArray[0])
-    }},
+    {
+        ref: "NEST", type: "Nested", bulks: nestedBulks, pointer: (ret) => {
+            return (ret.result.insideNested)
+        }
+    },
+    {
+        ref: "ARR", type: "Array", bulks: arrayBulks, pointer: (ret) => {
+            return (ret.result.insideArray[0])
+        }
+    },
 ]
 
 describe('Asynchronous types testing', function () {
@@ -111,6 +120,8 @@ describe('Asynchronous types testing', function () {
         describe(`Describing type ${bulkTest.type}`, function () {
             for (let bulk of bulkTest.bulks) {
                 const bulkRef = `${bulk.ref}-${bulkTest.ref}`
+
+
                 describe(`Describing type bulk tests ${bulkRef}`, function () {
 
                     function testingStrategy(test, strategy) {
@@ -118,16 +129,16 @@ describe('Asynchronous types testing', function () {
                         it(`Testing ${strategy}() against ${testRef}: ${test.description}`, async () => {
                             const schema = new fieldify.schema(context)
                             const cerror = schema.compile(test.schema)
-        
+
                             if (cerror.errors.length > 0 && test.compileError !== true)
                                 throw Error(cerror.errors[0].message)
                             else if (cerror.errors.length > 0 && test.compileError === true)
                                 return
-                    
+
                             const ret = await schema[strategy](test.data)
-              
+
                             // realign pointer if neeeded
-                            if(bulkTest.pointer && ret.error !== true) {
+                            if (bulkTest.pointer && ret.error !== true) {
                                 ret.fields = bulkTest.pointer(ret)
                             }
                             else {
@@ -156,6 +167,43 @@ describe('Asynchronous types testing', function () {
                     }
 
                     for (let test of bulk.tests) {
+                        const testRef = `${bulkRef}-${test.ref}`
+                        it(`Testing reentrance against ${testRef}`, async () => {
+
+                            const schema = new fieldify.schema(context)
+                            const cerror = schema.compile(test.schema)
+
+                            if (cerror.errors.length > 0 && test.compileError !== true)
+                                throw Error(cerror.errors[0].message)
+                            else if (cerror.errors.length > 0 && test.compileError === true)
+                                return
+
+                            const strictDecodeError = "strictDecodeError" in test ?
+                                test.strictDecodeError :
+                                test.error
+
+                            // pass 1
+                            const pass1 = await schema.strictDecode(test.data)
+                            if (pass1.error === true && strictDecodeError !== true)
+                                throw Error(Object.values(pass1.fields)[0])
+                            else if (pass1.error !== true && strictDecodeError === true)
+                                throw Error("Test should failed")
+                            else if (pass1.error === true && strictDecodeError === true)
+                                return
+
+                            // pass 2
+                            const pass2 = await schema.encode(pass1.result)
+
+                            // pass 3
+                            const pass3 = await schema.strictDecode(test.data)
+                            if (pass3.error === true && strictDecodeError !== true)
+                                throw Error(Object.values(pass3.fields)[0])
+                            else if (pass3.error !== true && strictDecodeError === true)
+                                throw Error("Test should failed")
+                            else if (pass3.error === true && strictDecodeError === true)
+                                return
+                        })
+
                         testingStrategy(test, "encode")
                         testingStrategy(test, "strictDecode")
                         testingStrategy(test, "decode")

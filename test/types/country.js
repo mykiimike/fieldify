@@ -15,7 +15,7 @@ async function waitObject(test, ret) {
 module.exports = [
     {
         ref: "T0001",
-        description: "Basic usage alpha-2",
+        description: "Basic usage based on alpha-2",
         schema: { test: { $type: "country", $required: true } },
         data: { test: "CH" },
         compileError: false,
@@ -28,7 +28,7 @@ module.exports = [
     },
     {
         ref: "T0002",
-        description: "Basic usage alpha-3",
+        description: "Basic usage based on alpha-3",
         schema: { test: { $type: "country", $required: true } },
         data: { test: "CHE" },
         compileError: false,
@@ -41,7 +41,7 @@ module.exports = [
     },
     {
         ref: "T0003",
-        description: "Basic usage phone",
+        description: "Basic usage based on phone",
         schema: { test: { $type: "country", $required: true } },
         data: { test: "+41" },
         compileError: false,
