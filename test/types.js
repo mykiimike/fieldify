@@ -9,6 +9,7 @@ const momentTests = require("./types/moment")
 const UrlTests = require("./types/URL")
 const countryTests = require("./types/country")
 const emailTests = require("./types/email")
+const domainTests = require("./types/domain")
 
 const bulks = [
     {
@@ -34,6 +35,10 @@ const bulks = [
     {
         ref: "EMAIL",
         tests: emailTests
+    },
+    {
+        ref: "DOMAIN",
+        tests: domainTests
     },
 ]
 
@@ -126,7 +131,12 @@ describe('Asynchronous types testing', function () {
 
                     function testingStrategy(test, strategy) {
                         const testRef = `${bulkRef}-${test.ref}`
-                        it(`Testing ${strategy}() against ${testRef}: ${test.description}`, async () => {
+
+                        var description = `Should success ${strategy}() against ${testRef}: ${test.description}`
+                        if (test.error)
+                            description = `Should fail ${strategy}() against ${testRef}: ${test.description}`
+
+                        it(description, async () => {
                             const schema = new fieldify.schema(context)
                             const cerror = schema.compile(test.schema)
 

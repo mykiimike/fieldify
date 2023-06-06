@@ -29,10 +29,10 @@ const data = [
     { "email": "user+test@domain+.com", "error": true },
     { "email": "user+@123.com", "error": true },
     { "email": "user+test@example.co.uk", "error": false },
-    { "email": "user@xn--w4r85el8fhu5dnra.ch", "error": false, "options": { $acceptPunnycode: true } },
+    { "email": "user@xn--w4r85el8fhu5dnra.ch", "error": false, "options": { $acceptPunycode: true } },
     { "email": "user@xn--w4r85el8fhu5dnra.ch", "error": true },
-    { "email": "user@xn--w4r85el8fhu5dnra.ch", "error": true, "options": { $acceptPunnycode: false } },
-    { "email": "user@xn--bcher-kva.xn--bouch-fsa.example.com", "error": false, "options": { $acceptPunnycode: true } }
+    { "email": "user@xn--w4r85el8fhu5dnra.ch", "error": true, "options": { $acceptPunycode: false } },
+    { "email": "user@xn--bcher-kva.xn--bouch-fsa.example.com", "error": false, "options": { $acceptPunycode: true } }
 ]
 
 const tests = []

@@ -198,12 +198,11 @@ if(fieldified.error === false) {
 |-|-|-
 | String | Single string | Low
 | Number | Number Type | Low
+| Moment | Manage Date Picker | Low
 | Select | Item selector | Low
 | Name | Name type | Low
 | Checkbox | Single checkbox | Low
-| DatePicker | Date picking functionnality | Low
 | DatePickerRange | Date picking with range | Low
-| DateTimePicker | Date & Time picker | Low
 | Color | HTML Color selector | Low
 | FieldName | Internal Field Name | Low
 | Hash | Hash | Low
@@ -214,7 +213,6 @@ if(fieldified.error === false) {
 | Country | List of Countries | Low
 | Hash | HASH type field | Low
 | Slug | Slug string | Low
-| TimePicker | Time picking functionnality | Low
 | TimePickerRange | Time picking with range | Low
 
 ### Upcomming Official Types
