@@ -10,6 +10,7 @@ const UrlTests = require("./types/URL")
 const countryTests = require("./types/country")
 const emailTests = require("./types/email")
 const domainTests = require("./types/domain")
+const TldTests = require("./types/TLD")
 
 const bulks = [
     {
@@ -39,6 +40,10 @@ const bulks = [
     {
         ref: "DOMAIN",
         tests: domainTests
+    },
+    {
+        ref: "TLD",
+        tests: TldTests
     },
 ]
 
