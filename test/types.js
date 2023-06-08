@@ -1,5 +1,3 @@
-
-
 const assert = require("assert")
 const fieldify = require("..")
 
@@ -15,6 +13,7 @@ const booleanTests = require("./types/boolean")
 const selectTests = require("./types/select")
 const fieldNameTests = require("./types/fieldName")
 const KVTests = require("./types/KV")
+const IPTests = require("./types/IP")
 
 const bulks = [
     {
@@ -64,6 +63,10 @@ const bulks = [
     {
         ref: "KV",
         tests: KVTests
+    },
+    {
+        ref: "IP",
+        tests: IPTests
     },
 ]
 
