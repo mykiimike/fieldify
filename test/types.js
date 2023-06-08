@@ -12,6 +12,7 @@ const emailTests = require("./types/email")
 const domainTests = require("./types/domain")
 const TldTests = require("./types/TLD")
 const booleanTests = require("./types/boolean")
+const selectTests = require("./types/select")
 
 const bulks = [
     {
@@ -49,6 +50,11 @@ const bulks = [
     {
         ref: "TLD",
         tests: TldTests
+    },
+
+    {
+        ref: "SELECT",
+        tests: selectTests
     },
 ]
 
@@ -133,7 +139,6 @@ describe('Asynchronous types testing', function () {
         describe(`Describing type ${bulkTest.type}`, function () {
             for (let bulk of bulkTest.bulks) {
                 const bulkRef = `${bulk.ref}-${bulkTest.ref}`
-
 
                 describe(`Describing type bulk tests ${bulkRef}`, function () {
 
