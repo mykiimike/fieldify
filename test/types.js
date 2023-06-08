@@ -11,11 +11,16 @@ const countryTests = require("./types/country")
 const emailTests = require("./types/email")
 const domainTests = require("./types/domain")
 const TldTests = require("./types/TLD")
+const booleanTests = require("./types/boolean")
 
 const bulks = [
     {
         ref: "STRING",
         tests: stringTests
+    },
+    {
+        ref: "BOOLEAN",
+        tests: booleanTests
     },
     {
         ref: "NUMBER",
@@ -46,8 +51,6 @@ const bulks = [
         tests: TldTests
     },
 ]
-
-
 
 // construct test in nested
 const nestedBulks = []
