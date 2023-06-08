@@ -14,6 +14,7 @@ const TldTests = require("./types/TLD")
 const booleanTests = require("./types/boolean")
 const selectTests = require("./types/select")
 const fieldNameTests = require("./types/fieldName")
+const KVTests = require("./types/KV")
 
 const bulks = [
     {
@@ -59,6 +60,10 @@ const bulks = [
     {
         ref: "FIELDNAME",
         tests: fieldNameTests
+    },
+    {
+        ref: "KV",
+        tests: KVTests
     },
 ]
 
