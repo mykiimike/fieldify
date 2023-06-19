@@ -4,11 +4,19 @@ const schema = require('./lib/schema')
 const context = require('./lib/context')
 const pack = require('./package.json')
 
+const globalContext = new context
+
 module.exports = {
-  schema,
-  context,
-//   types,
-  fusion,
-  utils,
-  version: pack.version,
+    schema,
+    context,
+    //   types,
+    fusion,
+    utils,
+    compile: (info, context) => {
+        if(!context) context = globalContext
+        const sc = new schema(context)
+        if(!sc.compile(info)) return(null)
+        return (sc)
+    },
+    version: pack.version,
 }
