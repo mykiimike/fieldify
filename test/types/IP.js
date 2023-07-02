@@ -1,4 +1,13 @@
 
+// const ipv6Address = '2a03:f80:ed15:146:154:156:220::'; // make it crash
+// const bigIntValue = ipv6ToBigInt(ipv6Address);
+//   console.log(ipParse(ipv6Address));
+//   console.log(ipStringify("0x2a030f80ed15014601540156022"));
+// // console.log(ipStringify("0xc0a0"));
+// // console.log(ipStringify("315451"));
+// // console.log(ipStringify(ipv4ToBigInt("192.160.0.1")));
+// //   console.log(BigInt("0x2a030f80ed1501460154015602200000"))
+
 module.exports = [
     {
         ref: "T0001",
