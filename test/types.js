@@ -14,6 +14,7 @@ const selectTests = require("./types/select")
 const fieldNameTests = require("./types/fieldName")
 const KVTests = require("./types/KV")
 const IPTests = require("./types/IP")
+const RegexTests = require("./types/regex")
 
 const bulks = [
     {
@@ -67,6 +68,10 @@ const bulks = [
     {
         ref: "IP",
         tests: IPTests
+    },
+    {
+        ref: "REGEX",
+        tests: RegexTests
     },
 ]
 
