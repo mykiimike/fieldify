@@ -79,4 +79,26 @@ module.exports = [
         error: true,
         encodeError: false
     },
+
+    {
+        ref: "T0009",
+        description: "Accept only IPv6 Compressed double part2",
+        schema: { test: { $type: "IP", $required: true } },
+        data: { test: "2002:6666:6676::1:1" },
+        compileError: false,
+        error: false,
+        encodeError: false
+    },
+
+    {
+        ref: "T0010",
+        description: "Accept only IPv6 Compressed null",
+        schema: { test: { $type: "IP", $required: true } },
+        data: { test: "2002:6666:6676::" },
+        compileError: false,
+        error: false,
+        encodeError: false
+    },
+
+
 ]
