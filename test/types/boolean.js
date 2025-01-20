@@ -5,7 +5,7 @@ const data = [
     { "value": "n/a", "error": true },
     { "value": true, "error": false, "result": true },
     { "value": false, "error": false, "result": false },
-    // { "value": 50, "error": true }
+    // { "value": 50, "error": true } // too much
 ]
 
 const tests = []
