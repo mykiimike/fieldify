@@ -1,6 +1,6 @@
 {
  "name": "fieldify",
- "version": "2.1.7",
+ "version": "2.1.8",
  "description": "Fieldify object manipulation & validator",
  "main": "index.js",
  "scripts": {
