@@ -40,6 +40,6 @@
  },
  "dependencies": {
   "country-data-list": "^1.4.0",
-  "tlds2": "^2.2.16"
+  "tlds2": "^2.2.17"
  }
 }
