@@ -39,7 +39,7 @@
   "semver": "^7.5.3"
  },
  "dependencies": {
-  "country-data-list": "^1.4.0",
+  "country-data-list": "1.4.1",
   "tlds2": "^2.2.17"
  }
 }
