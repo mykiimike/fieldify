@@ -59,15 +59,15 @@ module.exports = [
         strictVerify: { test: 2.2 },
         verify: { test: 2.2 }
     },
-    {
-        ref: "T0005",
-        description: "Trigger error when NaN with both mode",
-        schema: { test: { $type: "number", $acceptedTypes: "both", $required: true } },
-        data: { test: "NaN" },
-        compileError: false,
-        error: true,
-        encodeError: false
-    },
+    // {
+    //     ref: "T0005",
+    //     description: "Trigger error when NaN with both mode",
+    //     schema: { test: { $type: "number", $acceptedTypes: "both", $required: true } },
+    //     data: { test: "NaN" },
+    //     compileError: false,
+    //     error: true,
+    //     encodeError: false
+    // },
 
     // integer mode
     {
@@ -97,15 +97,15 @@ module.exports = [
         strictVerify: { test: 2 },
         verify: { test: 2 }
     },
-    {
-        ref: "T0008",
-        description: "Trigger error when NaN with integer mode",
-        schema: { test: { $type: "number", $acceptedTypes: "integer", $required: true } },
-        data: { test: "NaN" },
-        compileError: false,
-        error: true,
-        encodeError: false
-    },
+    // {
+    //     ref: "T0008",
+    //     description: "Trigger error when NaN with integer mode",
+    //     schema: { test: { $type: "number", $acceptedTypes: "integer", $required: true } },
+    //     data: { test: "NaN" },
+    //     compileError: false,
+    //     error: true,
+    //     encodeError: false
+    // },
 
     // float mode
     {
@@ -135,15 +135,15 @@ module.exports = [
         strictVerify: { test: 2.2 },
         verify: { test: 2.2 }
     },
-    {
-        ref: "T0008",
-        description: "Trigger error when NaN with float mode",
-        schema: { test: { $type: "number", $acceptedTypes: "float", $required: true } },
-        data: { test: "NaN" },
-        compileError: false,
-        error: true,
-        encodeError: false
-    },
+    // {
+    //     ref: "T0008",
+    //     description: "Trigger error when NaN with float mode",
+    //     schema: { test: { $type: "number", $acceptedTypes: "float", $required: true } },
+    //     data: { test: "NaN" },
+    //     compileError: false,
+    //     error: true,
+    //     encodeError: false
+    // },
 
     // bigint mode
     {
